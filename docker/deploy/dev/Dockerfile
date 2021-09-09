@@ -10,7 +10,7 @@ workdir /home/dev
 ARG version=latest
 ADD $version.package.json ./package.json
 
-RUN yarn --cache-folder ./ycache && rm -rf ./ycache && \
+RUN yarn --cache-folder ./ycache --ignore-engines --ignore-platform --ignore-optional && rm -rf ./ycache && \
     NODE_OPTIONS="--max_old_space_size=4096" yarn theia build ;\
     yarn theia download:plugins
 EXPOSE 3000
